@@ -10,10 +10,12 @@ setup_all;
 %% video data information
 % change below for different videos
 dataInfo.videoPath = 'Videos/';
-dataInfo.videoName = 'waterpot/';
+dataInfo.videoName = 'various/';
 dataInfo.gtName = 'gt/';
 dataInfo.videoFormat = 'png';
-dataInfo.result_path = [dirInfo.resultPath sprintf('%s/',dataInfo.videoName(1:end-1) )];
+dataInfo.objID = 1;
+dataInfo.result_path =...
+    [dirInfo.resultPath sprintf('%s/%02d/',dataInfo.videoName(1:end-1),dataInfo.objID)];
 
 %% pre-process data
 dataInfo = preprocess_video(dataInfo, dirInfo, para);
@@ -21,7 +23,7 @@ inputPath = dataInfo.inputPath;
 totalFrame = dataInfo.totalFrame;
 
 %% load ground truths
-gtPath = [inputPath  dataInfo.gtName ['*.' dataInfo.videoFormat]];
+gtPath = [inputPath  dataInfo.gtName sprintf('%02d/', dataInfo.objID) ['*.' dataInfo.videoFormat]];
 gtMask = cell(totalFrame,1);
 gt_list = dir(gtPath);
 
