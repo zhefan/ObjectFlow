@@ -6,4 +6,4 @@ Data/
 *.asv
 Videos/
 *.mexa64
-caffe-cedn-dev/
+*.mat
