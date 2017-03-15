@@ -70,6 +70,7 @@ for ff = 1:totalFrame-1
     if para.saveResult == 1
         path = [dirInfo.resultPath sprintf('%s/',dataInfo.videoName(1:end-1) )];
         if ~exist(path,'dir'), mkdir(path); end;
+        mask = onlineModel.mask;
         save([path sprintf('%05d_mask.mat',ff+1)],'mask','-v7.3');
     end
 end
