@@ -1,0 +1,3 @@
+[submodule "caffe-cedn-dev"]
+	path = caffe-cedn-dev
+	url = https://github.com/zhefan/caffe-cedn-dev.git
