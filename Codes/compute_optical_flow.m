@@ -13,7 +13,8 @@ else
         im1 = double(videoAll{ff});
         im2 = double(videoAll{ff+1});
         
-        uv = int16(estimate_flow_interface(im1,im2,'classic+nl-fast'));
+        % uv = int16(estimate_flow_interface(im1,im2,'classic+nl-fast'));
+        uv = int16(sundaramECCV10_ldof_GPU_mex(uint8(im1), uint8(im2)));
         flowsAll{ff}(:,:,1) = uv(:,:,2);
         flowsAll{ff}(:,:,2) = uv(:,:,1);
     end
@@ -31,7 +32,8 @@ else
         im1 = double(videoAll{ff});
         im2 = double(videoAll{ff-1});
         
-        uv = int16(estimate_flow_interface(im1,im2,'classic+nl-fast'));
+        % uv = int16(estimate_flow_interface(im1,im2,'classic+nl-fast'));
+        uv = int16(sundaramECCV10_ldof_GPU_mex(uint8(im1), uint8(im2)));
         flowsInvAll{totalFrame-ff+1}(:,:,1) = uv(:,:,2);
         flowsInvAll{totalFrame-ff+1}(:,:,2) = uv(:,:,1);
     end

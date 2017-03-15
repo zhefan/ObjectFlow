@@ -16,7 +16,8 @@ initModel.fgColorsS_all = []; initModel.bgColors_all = [];
 %% build initial model for CNN features
 % load and reshape CNN features
 cnnSave = [dirInfo.cnnPath dataInfo.videoName(1:end-1) sprintf('/%05d.mat',1)];
-load(cnnSave); cnnFeats{1} = reshapeCNNFeature(feats,pad,wd,ht,para.layers,para.scales);
+temp_load = load(cnnSave); 
+cnnFeats{1} = reshapeCNNFeature(temp_load.feats,temp_load.pad,wd,ht,para.layers,para.scales);
 cnnFeats{2} = cnnFeats{1};
 
 % build model

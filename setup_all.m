@@ -4,6 +4,7 @@ addpath(genpath('External/maxflow'));
 addpath(genpath('External/flow_code_v2'));
 addpath(genpath('External/liblinear-2.01'));
 addpath(genpath('External/pdollar_toolbox'));
+addpath(genpath('External/sundaramECCV2010'));
 addpath(genpath('Util'));
 addpath(genpath('Codes'));
 

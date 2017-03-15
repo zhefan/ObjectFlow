@@ -1,0 +1,9 @@
+Data/
+Result/
+Data/
+*.swp
+*~
+*.asv
+Videos/
+*.mexa64
+caffe-cedn-dev/

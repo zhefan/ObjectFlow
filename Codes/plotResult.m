@@ -29,10 +29,3 @@ if para.seeResult == 1
         subplot(pos_y,pos_x,2); imshow(imSeg); title('predicted mask');
     end
 end
-
-%% save results
-if para.saveResult == 1
-    path = [dirInfo.resultPath sprintf('%s/%s/',dataInfo.videoName(1:end-1),num2str(dataInfo.objId))];
-    if ~exist(path,'dir'), mkdir(path); end;
-    save([path sprintf('%05d_mask.mat',ff+1)],'mask','-v7.3');
-end
