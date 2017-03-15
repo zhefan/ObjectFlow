@@ -6,8 +6,6 @@ clc
 
 %% setups
 setup_all;
-para.seeResult = 1;  % visualize results
-para.saveResult = 1; % save binary masks as mat files
 
 %% video data information
 % change below for different videos
@@ -15,7 +13,7 @@ dataInfo.videoPath = 'Videos/';
 dataInfo.videoName = 'waterpot/';
 dataInfo.gtName = 'gt/';
 dataInfo.videoFormat = 'png';
-dataInfo.gtFormat = 'png';
+dataInfo.result_path = [dirInfo.resultPath sprintf('%s/',dataInfo.videoName(1:end-1) )];
 
 %% pre-process data
 dataInfo = preprocess_video(dataInfo, dirInfo, para);
@@ -23,13 +21,13 @@ inputPath = dataInfo.inputPath;
 totalFrame = dataInfo.totalFrame;
 
 %% load ground truths
-gtPath = [inputPath  dataInfo.gtName ['*.' dataInfo.gtFormat]];
+gtPath = [inputPath  dataInfo.gtName ['*.' dataInfo.videoFormat]];
 gtMask = cell(totalFrame,1);
-list = dir(gtPath);
+gt_list = dir(gtPath);
 
 % for incomplete ground truths (e.g., Youtube-Objects dataset)
-for ff = 1:length(list)
-    tmp = imresize(imread([inputPath dataInfo.gtName list(ff).name]), 0.5);
+for ff = 1:length(gt_list)
+    tmp = imresize(imread([inputPath dataInfo.gtName gt_list(ff).name]), 0.5);
     
     % change below according to different ground truth formats
     %frame = str2double(list(ff).name(1:end-4));
@@ -67,13 +65,11 @@ for ff = 1:totalFrame-1
     % onlineModel = plotResult(onlineModel, dataInfo, dirInfo, para);
     
     %% save results
-    if para.saveResult == 1
-        path = [dirInfo.resultPath sprintf('%s/',dataInfo.videoName(1:end-1) )];
-        if ~exist(path,'dir'), mkdir(path); end;
-        mask = onlineModel.mask;
-        save([path sprintf('%05d_mask.mat',ff+1)],'mask','-v7.3');
-    end
+    if ~exist(dataInfo.result_path,'dir'), mkdir(dataInfo.result_path); end;
+    mask = onlineModel.mask;
+    [~, out_name, ~] = fileparts(dataInfo.img_list(ff+1).name);
+    save([dataInfo.result_path out_name '.mat'], 'mask', '-v7.3');
 end
 dataInfo.tracking_time = toc;
-fprintf('finish segmetnting video: %s obj %d, average IOU: %f.\n\n',dataInfo.videoName(1:end-1), dataInfo.objId, onlineModel.iou/(totalFrame-1));
+% fprintf('finish segmetnting video: %s obj %d, average IOU: %f.\n\n',dataInfo.videoName(1:end-1), dataInfo.objId, onlineModel.iou/(totalFrame-1));
 

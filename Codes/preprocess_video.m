@@ -25,3 +25,5 @@ dataInfo.cnn_time = toc;
 tic
 extract_supervoxels(dataInfo, dirInfo, para);
 dataInfo.voxel_time = toc;
+
+dataInfo.img_list = list;
