@@ -29,7 +29,8 @@ gt_list = dir(gtPath);
 
 % for incomplete ground truths (e.g., Youtube-Objects dataset)
 for ff = 1:length(gt_list)
-    tmp = imresize(imread([inputPath dataInfo.gtName gt_list(ff).name]), 0.5);
+    tmp = imresize(imread([inputPath...
+        dataInfo.gtName sprintf('%02d/', dataInfo.objID) gt_list(ff).name]), 0.5);
     
     % change below according to different ground truth formats
     %frame = str2double(list(ff).name(1:end-4));
