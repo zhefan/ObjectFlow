@@ -69,7 +69,7 @@ for ff = 1:totalFrame-1
     
     %% save results
     if ~exist(dataInfo.result_path,'dir'), mkdir(dataInfo.result_path); end;
-    mask = onlineModel.mask;
+    mask = imresize(onlineModel.mask, 2, 'nearest');
     [~, out_name, ~] = fileparts(dataInfo.img_list(ff+1).name);
     save([dataInfo.result_path out_name '.mat'], 'mask', '-v7.3');
 end
