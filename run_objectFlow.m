@@ -13,9 +13,9 @@ dataInfo.videoPath = 'Videos/';
 dataInfo.videoName = 'various/';
 dataInfo.gtName = 'gt/';
 dataInfo.videoFormat = 'png';
-dataInfo.objID = 1;
+dataInfo.objID = 'waterpot';
 dataInfo.result_path =...
-    [dirInfo.resultPath sprintf('%s/%02d/',dataInfo.videoName(1:end-1),dataInfo.objID)];
+    [dirInfo.resultPath sprintf('%s/%s/',dataInfo.videoName(1:end-1),dataInfo.objID)];
 
 %% pre-process data
 dataInfo = preprocess_video(dataInfo, dirInfo, para);
@@ -23,14 +23,14 @@ inputPath = dataInfo.inputPath;
 totalFrame = dataInfo.totalFrame;
 
 %% load ground truths
-gtPath = [inputPath  dataInfo.gtName sprintf('%02d/', dataInfo.objID) ['*.' dataInfo.videoFormat]];
+gtPath = [inputPath  dataInfo.gtName dataInfo.objID '*.' dataInfo.videoFormat];
 gtMask = cell(totalFrame,1);
 gt_list = dir(gtPath);
 
 % for incomplete ground truths (e.g., Youtube-Objects dataset)
 for ff = 1:length(gt_list)
     tmp = imresize(imread([inputPath...
-        dataInfo.gtName sprintf('%02d/', dataInfo.objID) gt_list(ff).name]), 0.5);
+        dataInfo.gtName dataInfo.objID gt_list(ff).name]), 0.5);
     
     % change below according to different ground truth formats
     %frame = str2double(list(ff).name(1:end-4));
@@ -74,5 +74,3 @@ for ff = 1:totalFrame-1
     save([dataInfo.result_path out_name '.mat'], 'mask', '-v7.3');
 end
 dataInfo.tracking_time = toc;
-% fprintf('finish segmetnting video: %s obj %d, average IOU: %f.\n\n',dataInfo.videoName(1:end-1), dataInfo.objId, onlineModel.iou/(totalFrame-1));
-
