@@ -1,7 +1,8 @@
 function viz_result(dataInfo)
 
 if nargin < 1
-    dataInfo.result_path = 'Result/various/01/';
+    dataInfo.result_path = 'Result/various/waterpot/';
+    dataInfo.folder = 'Videos/various/';
     dataInfo.img_list = dir('Videos/various/*.png');
 end
 
@@ -13,7 +14,7 @@ result_mat = dir([dataInfo.result_path '*.mat']);
 
 for i = 1:length(result_mat)
     temp_load = load([dataInfo.result_path result_mat(i).name]);
-    temp_img = im2double(imread([dataInfo.img_list(i+1).folder '/' dataInfo.img_list(i+1).name ]));
+    temp_img = im2double(imread([dataInfo.folder '/' dataInfo.img_list(i+1).name ]));
     mask = temp_load.mask;
 %     mask = imresize(temp_load.mask, 2, 'nearest');
     mask = ~mask .* 0.3 + mask;
