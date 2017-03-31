@@ -1,21 +1,20 @@
-% demo for video object segmentation in the paper: "Video Segmentation via Object Flow",
-% Y.-H. Tsai, M.-H. Yang and M. J. Black, CVPR 2016.
-close all
-clear
-clc
+function run_objectFlow(dataInfo)
 
 %% setups
 setup_all;
 
-%% video data information
-% change below for different videos
-dataInfo.videoPath = 'Videos/';
-dataInfo.videoName = 'various/';
-dataInfo.gtName = 'gt/';
-dataInfo.videoFormat = 'png';
-dataInfo.objID = 'waterpot';
-dataInfo.result_path =...
-    [dirInfo.resultPath sprintf('%s/%s/',dataInfo.videoName(1:end-1),dataInfo.objID)];
+if nargin < 1  
+    %% video data information
+    % change below for different videos
+    dataInfo.videoPath = 'Videos/';
+    dataInfo.videoName = 'various/';
+    dataInfo.gtName = 'gt/';
+    dataInfo.videoFormat = 'png';
+    dataInfo.objID = 'downy';
+    dataInfo.result_path =...
+        [dirInfo.resultPath sprintf('%s/%s/',dataInfo.videoName(1:end-1),dataInfo.objID)];
+
+end
 
 %% pre-process data
 dataInfo = preprocess_video(dataInfo, dirInfo, para);

@@ -1,7 +1,8 @@
 function viz_result(dataInfo)
 
 if nargin < 1
-    dataInfo.result_path = 'Result/various/waterpot/';
+    dataInfo.objID = 'downy';
+    dataInfo.result_path = ['Result/various/' dataInfo.objID '/'];
     dataInfo.folder = 'Videos/various/';
     dataInfo.img_list = dir('Videos/various/*.png');
 end
@@ -23,7 +24,8 @@ for i = 1:length(result_mat)
        temp_img(:,:,j) = temp_img(:,:,j) .* mask; 
     end
     
-%     imshow(temp_img)
+    imshow(temp_img)
+    fprintf('img: %d\n', i)
     imwrite(temp_img, sprintf('%s%04d.png', dataInfo.result_path, i+1))
 %     pause(0.1)
 end
