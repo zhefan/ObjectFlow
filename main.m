@@ -19,5 +19,3 @@ for i = 1:length(gt_objID)
 
     run_objectFlow(dataInfo, dirInfo, para);
 end
-
-viz_result(dataInfo)
