@@ -1,19 +1,18 @@
-function run_objectFlow(dataInfo)
+function run_objectFlow(dataInfo, dirInfo, para)
 
-%% setups
-setup_all;
 
-if nargin < 1  
+if nargin < 1
+    setup_all;
+    
     %% video data information
     % change below for different videos
     dataInfo.videoPath = 'Videos/';
-    dataInfo.videoName = 'various/';
+    dataInfo.videoName = 'various_1/';
     dataInfo.gtName = 'gt/';
     dataInfo.videoFormat = 'png';
-    dataInfo.objID = 'downy';
+    dataInfo.objID = 'tide';
     dataInfo.result_path =...
         [dirInfo.resultPath sprintf('%s/%s/',dataInfo.videoName(1:end-1),dataInfo.objID)];
-
 end
 
 %% pre-process data
@@ -47,7 +46,7 @@ dataInfo.init_model_time = toc;
 tic
 onlineModel.iou = 0;
 fprintf('Start tracking segments...\n');
-for ff = 1:totalFrame-1    
+for ff = 1:totalFrame-1
     %% build the online model
     onlineModel.ff = ff;
     onlineModel = build_online_model(onlineModel, dataInfo, dirInfo, para);
@@ -56,7 +55,7 @@ for ff = 1:totalFrame-1
     onlineModel.video = dataInfo.videoAll(ff:ff+1); onlineModel.flows = dataInfo.flowsAll(ff); onlineModel.flowsInv = dataInfo.flowsInvAll(totalFrame-ff);
     onlineModel = estimateObjectLoc(onlineModel, para);
     
-    %% track object segment 
+    %% track object segment
     % 1) build the multi-level graph
     % 2) compute potentials
     % 3) solved by graph cut
