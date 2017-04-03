@@ -10,7 +10,7 @@ if nargin < 1
     dataInfo.videoName = 'various_1/';
     dataInfo.gtName = 'gt/';
     dataInfo.videoFormat = 'png';
-    dataInfo.objID = 'tide';
+    dataInfo.objID = 'ranch';
     dataInfo.result_path =...
         [dirInfo.resultPath sprintf('%s/%s/',dataInfo.videoName(1:end-1),dataInfo.objID)];
 end
