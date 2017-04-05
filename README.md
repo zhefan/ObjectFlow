@@ -1,16 +1,9 @@
 # ObjectFlow
-Project webpage: https://sites.google.com/site/yihsuantsai/research/cvpr16-segmentation <br />
-Contact: Yi-Hsuan Tsai (ytsai2 at ucmerced dot edu)
 
 ## Paper
 Video Segmentation via Object Flow <br />
 Yi-Hsuan Tsai, Ming-Hsuan Yang and Michael J. Black <br />
 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016.
-
-## Overview
-* This is the authors' MATLAB implementation described in the above paper. Please cite our paper if you use our code and model for your research.
-
-* This code has been tested on Ubuntu 14.04 and MATLAB 2013b.
 
 ## Installation
 * Download and unzip the code.
@@ -20,6 +13,8 @@ IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016.
 * Download the CNN model for feature extraction at https://dl.dropboxusercontent.com/u/73240677/CVPR16/pascal_segmentation.zip, then unzip the model folder under the **caffe-cedn-dev/examples** folder.
 
 * Install included libraries in the **External** folder if needed (pre-compiled codes are already included).
+* Install cuda-7.5 (do not overwrite /usr/local/cuda directory), link libldof_gpu.so in External/sundaramECCV2010 folder to /usr/local/cuda-7.5/lib64
+* export LD_LIBRARY_PATH of cuda-7.5 in bashrc
 
 ## Usage
 * Put your video data in the **Videos** folder (see examples in this folder).

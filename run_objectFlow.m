@@ -5,12 +5,8 @@ if nargin < 1
     setup_all;
     
     %% video data information
-    % change below for different videos
-    dataInfo.videoPath = 'Videos/';
-    dataInfo.videoName = 'various_1/';
-    dataInfo.gtName = 'gt/';
-    dataInfo.videoFormat = 'png';
-    dataInfo.objID = 'ranch';
+    dataInfo = globalOpts;
+    dataInfo.objID = 'sugar';
     dataInfo.result_path =...
         [dirInfo.resultPath sprintf('%s/%s/',dataInfo.videoName(1:end-1),dataInfo.objID)];
 end

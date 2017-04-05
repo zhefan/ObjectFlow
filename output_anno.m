@@ -2,13 +2,13 @@ close all
 clear
 clc
 
-viz = 0;
+viz = 1;
 
 dataInfo = globalOpts;
 
 tracked_objs = cell(length(dataInfo.gt_objID),1);
 for i = 1:length(dataInfo.gt_objID)
-    result_path = ['Result/various_1/' dataInfo.gt_objID{i} '/'];
+    result_path = ['Result/' dataInfo.videoName dataInfo.gt_objID{i} '/'];
     gtPath = [dataInfo.inputPath dataInfo.gtName dataInfo.gt_objID{i} '/*.' dataInfo.videoFormat];
     gt_img_name = dir(gtPath);
     gt_img = imread([dataInfo.inputPath dataInfo.gtName dataInfo.gt_objID{i} '/' gt_img_name.name]);
@@ -37,7 +37,7 @@ for i = 1:length(dataInfo.gt_objID)
             temp_img = im2double(imread([dataInfo.folder dataInfo.img_list(j+1).name ]));
             imshow(temp_img), hold on
             rectangle('Position', [x_min, y_min, width, height],'EdgeColor','r', 'LineWidth', 3);
-            % pause(0.1)
+            pause(0.1)
         end
         
     end

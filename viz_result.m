@@ -1,10 +1,9 @@
 function viz_result(dataInfo)
 
 if nargin < 1
-    dataInfo.objID = 'ranch';
-    dataInfo.result_path = ['Result/various_1/' dataInfo.objID '/'];
-    dataInfo.folder = 'Videos/various_1/';
-    dataInfo.img_list = dir('Videos/various_1/*.png');
+    dataInfo = globalOpts;
+    dataInfo.objID = 'sugar';
+    dataInfo.result_path = ['Result/' dataInfo.videoName dataInfo.objID '/'];
 end
 
 close all
