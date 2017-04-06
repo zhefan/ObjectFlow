@@ -8,12 +8,12 @@ IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016.
 ## Installation
 * Download and unzip the code.
 
-* Install the attached caffe branch, as instructed at http://caffe.berkeleyvision.org/installation.html.
+* Install the attached caffe branch, as instructed at http://caffe.berkeleyvision.org/installation.html. Remember to change your Matlab version accordingly in the config file.
 
 * Download the CNN model for feature extraction at https://dl.dropboxusercontent.com/u/73240677/CVPR16/pascal_segmentation.zip, then unzip the model folder under the **caffe-cedn-dev/examples** folder.
 
 * Install included libraries in the **External** folder if needed (pre-compiled codes are already included).
-* Install cuda-7.5 (do not overwrite /usr/local/cuda directory), link libldof_gpu.so in External/sundaramECCV2010 folder to /usr/local/cuda-7.5/lib64
+* Install cuda-7.5 (do not overwrite /usr/local/cuda directory), link /usr/local/cuda-7.5/lib64/libldof_gpu.so to libldof_gpu.so External/sundaramECCV2010 folder
 * export LD_LIBRARY_PATH of cuda-7.5 in bashrc
 
 ## Usage
